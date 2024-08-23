@@ -17,6 +17,8 @@ const timeZone = "UTC";
 
 // расскрываем серевер
 const app = express();
+// обработка статических страниц
+app.use(express.static(path.join(__dirname, "public")))
 // порт сервера
 const port = 3000;
 
@@ -26,6 +28,9 @@ const loadBuses = async () => {
 	// возвращаем массив с данными
 	return JSON.parse(data);
 }
+
+
+
 // время следующей отправки
 const getNextDeparture = (firstDepartureTime, frequencyMinutes) => {
 	// текущее время
@@ -86,11 +91,19 @@ const sendUpdateData = async () => {
 	return updatedBuses;
 }
 
+// функция сортировки автобусов по дате отправления
+const sortBuses = (buses) =>
+	[...buses].sort((a, b) => new Date(`${a.nextDeparture.data}T${a.nextDeparture.time}`) - new Date(`${b.nextDeparture.data}T${b.nextDeparture.time}`)
+	);
+
+
 // вывод запроса данных отправления автобусов
 app.get('/next-departure', async (req, res) => {
 	try {
 		const updatedBuses = await sendUpdateData();
-		res.json(updatedBuses)
+		// сортировка по времени отправления автобусов
+		const sortedBuses = sortBuses(updatedBuses);
+		res.json(sortedBuses)
 	} catch (error) {
 		res.send('error')
 	}
