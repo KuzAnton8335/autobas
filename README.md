@@ -21,6 +21,18 @@ A small javascript project using websockets, nodemon to track bus schedules in r
 
 Download the project from GitHub at https://github.com/KuzAnton8335/autobas and install all dependencies using the npm install or npm i command. Afterwards, in order to view the project, type npm start on the command line, and in order to play with the project, npm dev.
 
+## Technologies
+
+Технологии:
+JavaScript: Основной язык программирования для клиентской и серверной части.
+Boostrap: Для создания пользовательского интерфейса.
+WebSockets: Для обеспечения двусторонней связи между клиентом и сервером.
+
+Technologies:
+JavaScript: The main programming language for both the client and server sides.
+Boostrap: To create a user interface.
+WebSockets: To provide two-way communication between client and server.
+
 ## Distribute
 
 - [Autobas](https://github.com/KuzAnton8335/autobas)
